@@ -4,17 +4,21 @@ import PropTypes from 'prop-types';
 export class Home extends React.Component{
   constructor(props){
     super();
-    this.age = props.age;
+    this.state = {
+       age: props.initialAge,
+       status: 0
+   }
 
 }
   onMakeYounger(){
-        this.age -= 1;
-        console.log(this.age);
+        this.setState({
+         age: this.state.age - 1
+      });
    }
 	render(){
       return(
         <div>
-          <p>Your Name is {this.props.name}, Your age is {this.age}</p>
+          <p>Your Name is {this.props.name}, Your age is {this.state.age}</p>
           <hr/>
           <button onClick={() => this.onMakeYounger()} className="btn btn-primary">Make me younger!</button>
         </div>
@@ -24,5 +28,5 @@ export class Home extends React.Component{
 
 Home.propTypes = {
     name: PropTypes.string,
-    age : PropTypes.number
+    initialAge : PropTypes.number
 };
